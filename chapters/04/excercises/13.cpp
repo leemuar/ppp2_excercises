@@ -8,14 +8,34 @@ program using this method
 
 #include "std_lib_facilities.h"
 
-/*
-Создает и возвращает Решето Эратосфена - вектор, заполненный булевыми величинами
-Значение true элемента вектора с индексом i будет значить, что
-число i+lower является простым числом. А false - что не является
-*/
+void output_primes(vector<int> primes){
 
-vector<bool> create_sieve_of_eratosthenes(int lower, int max){
+	cout << "Prime numbers: ";
+	for(int i: primes){
+		cout << i << ' ';
+	}
+	cout << '\n';
+
+}
+
+bool is_prime(char c){
+	constexpr char prime{'1'};
+	return prime == c;
+}
+
+/*
+Создает и возвращает Решето Эратосфена - вектор со значениями '1' и '0'
+По идее лучше использовать значения boolean, но по какой-то причине vector<bool> 
+не работает (см подробнее тут - http://stackoverflow.com/questions/17930442/) 
+Поэтому используем тип char
+
+Значение '1' элемента вектора с индексом i будет значить, что
+число i+lower является простым числом.
+*/
+vector<char> create_sieve_of_eratosthenes(int lower, int max){
 	
+	constexpr char prime_value{'1'};
+	constexpr char not_prime{'0'};
 	/*
 	https://ru.wikipedia.org/wiki/Решето_Эратосфена
 	Вход: натуральное число n
@@ -30,24 +50,18 @@ vector<bool> create_sieve_of_eratosthenes(int lower, int max){
 
 	Выход: числа i, для которых A[i] = true.
 	*/
-	// Создадим вектор, заполненный значениями true
+	// Создадим вектор, заполненный значениями '1'
 	// Количество элементов в векторе вычисляется 
 	// по формуле (ВерхняяГраница - НижняяГраница + 1)
-	vector<bool> sieve(max - lower + 1, true);
-	
-	for(int i = lower; i*i <= max; ++i){
-		
-		if(sieve[i]){
-		/*	int c = 0;
-			int j = 0;
-			while(j <= max){
-				j = i*i + c*i;
-				sieve[j] = false;
-				++c;
+	vector<char> sieve(max - lower + 1, prime_value);
+	for(int n = lower; n <= max; ++n){
+		if(is_prime(sieve[n-lower])){
+			int shift = 2;
+			for(int i = shift*n; i <= max; i = shift*n) {
+				sieve[i-lower] = not_prime;
+				++shift;
 			}
-		*/
 		}
-		
 	}
 	
 	return sieve;
@@ -61,52 +75,37 @@ vector<bool> create_sieve_of_eratosthenes(int lower, int max){
 lower -  нижняя граница включительно
 max - верхняя граница включительно
 */
-/*
 vector<int> primes(int lower, int max){
 	
-	// получим Решето Эратосфена - вектор, заполненный булевыми значениями
-	// значение true элемента вектора с индексом i будет значить, что
-	// число i+lower является простым числом. А false - что не является
-	vector<bool> sieve = create_sieve_of_eratosthenes(lower, max);
+	vector<char> sieve = create_sieve_of_eratosthenes(lower, max);
 	
 	// посчитаем количество простых чисел в Решете
-	// Используем это число позже для оптимизации создания
-	// итогового вектора со списком простых чисел, чтобы избежать
+	// Используем это число позже для оптимизации создания итогового вектора
+	// со списком простых чисел, чтобы избежать
 	// лишней аллокации памяти c vector.push_back()
 	int amount = 0;
-	for(int i = 0; i < sieve.size(); ++i){ ++amount; }
+	for(int i = 0; i < sieve.size(); ++i){ 
+		if(is_prime(sieve[i])) { ++amount; }
+	}
 	
 	// создадим вектор для итоговых значений
 	vector<int> prime_numbers(amount);
 	// заполним итоговый вектор простыми числами из Решета
-	int next_index = 0;
+	int next = 0;
 	for(int i = 0; i < sieve.size(); ++i){
-		if(sieve[i]){
-			prime_numbers[next_index] = i + lower;
+		if(is_prime(sieve[i])){
+			prime_numbers[next] = i + lower;
+			++next;
 		}
 	}
 	
 	return prime_numbers;
 	
 }
-*/
-
-void output_primes(vector<int> primes, int lower, int max){
-	
-	cout << "Here is all prime numbers from " << lower << " to " << max << ":\n";
-	
-	for(int i: primes){
-		cout << ' ' << i;
-	}
-	
-}
 
 int main(){
 	
-	int lower{2};
-	int max{100};
-	
-	vector<bool> primes(10);
+	output_primes(primes(2,100));
 	//vector<int> prime_numbers = primes(lower, max);
 	//output_primes(prime_numbers, lower, max);
 	
