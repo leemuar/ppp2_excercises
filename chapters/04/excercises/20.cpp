@@ -6,6 +6,16 @@ program will output the corresponding score or name not found
 
 #include "std_lib_facilities.h"
 
+// looks for a name in vector. If finds - return the index of name in vector
+// if name is not found - returns -1
+int get_name_index(string name, vector<string> names){
+	constexpr int not_found{-1};
+	for(int i = 0; i < names.size(); ++i ) {
+		if (names[i] == name) { return i; }
+	}
+	return not_found;
+}
+
 // checks if the name provided is already in a vector of names
 bool is_name_unique(string name, vector<string> names) {
 	// check all elements in vector for the same value as "name"
@@ -67,5 +77,16 @@ int main() {
 	// write pairs name - score
 	output_names_and_scores(names, scores);
 	
+	// ask user for names and print scores for the names
+	cout << "OK, now give me the name - and I'll show you the score for it\n";
+	int index;
+	while (cin >> name) {
+		index = get_name_index(name, names);
+		if (-1 != index) {
+			cout << "(" << name << "," << scores[index] << ")\n";
+		} else {
+			cout << "Name " << name << " not found!\n";
+		}
+	}
 
 }
