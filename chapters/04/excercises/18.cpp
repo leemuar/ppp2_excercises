@@ -15,10 +15,8 @@ solutions to a quadratic equation, output both x1 and x2.
 #include "std_lib_facilities.h"
 
 void output_equation(double a, double b, double c){
-	cout << a << "x^2 + " << b << "x + " << c << '\n';
+	cout << a << "x^2 + " << b << "x + " << c << " = 0\n";
 }
-
-
 
 int main(){
 	
@@ -31,14 +29,10 @@ int main(){
 	
 	// find discriminant
 	double d = b*b - 4*a*c;
-	if (0 == d){
-		x1 = -b / (2*a);
-		x2 = x1;
-		output_equation(a, b, c);
-		cout << "There is one solution: " << x1;
-	} else if (0 < d) {
-		x1 = (-b + sqrt(b*b - 4*a*c)) / 2*a;
-		x2 = (-b - sqrt(b*b - 4*a*c)) / 2*a;
+	cout << "discr=" << d << '\n';
+	if (0 <= d) {
+		x1 = (-b + sqrt(d)) / (2*a);
+		x2 = (-b - sqrt(d)) / (2*a);
 		output_equation(a, b, c);
 		cout << "The solution is: x1=" << x1 << ", x2=" << x2; 
 	} else {
