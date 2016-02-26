@@ -8,7 +8,7 @@ remove all errors in program
 int main(){
 	
 try {
-	cout << success << '\n';
+	cout << "success" << '\n';
 	keep_window_open();
 	return 0;
 } catch(exception& e) {
