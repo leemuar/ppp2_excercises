@@ -8,7 +8,10 @@ remove all errors in program
 int main(){
 	
 try {
-	int x=2; double d = 5/(x-2); if (d==2*x+0.5) cout << "Success!\n";
+	int x=3; 
+	if (2==x) {error("zero division");} 
+	double d = 6.0/(x-2);
+	if (d==2*x) cout << "Success!\n";
 	keep_window_open();
 	return 0;
 } catch(exception& e) {
