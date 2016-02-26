@@ -8,7 +8,7 @@ remove all errors in program
 int main(){
 	
 try {
-	string s = "ape"; if (s=="fool") cout << "Success\n";
+	string s = "ape"; if (s!="fool") cout << "Success\n";
 	keep_window_open();
 	return 0;
 } catch(exception& e) {
