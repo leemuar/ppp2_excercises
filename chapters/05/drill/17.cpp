@@ -8,7 +8,7 @@ remove all errors in program
 int main(){
 	
 try {
-	int x = 2000; char c = x; if(c==2000) cout << "Success!\n";
+	int x = 2000; int c = x; if(c==2000) cout << "Success!\n";
 	keep_window_open();
 	return 0;
 } catch(exception& e) {
