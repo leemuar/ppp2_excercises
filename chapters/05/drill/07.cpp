@@ -8,6 +8,7 @@ remove all errors in program
 int main(){
 	
 try {
+	bool cond{true};
 	if (cond) cout << "Success!\n"; else cout << "Fail!\n";
 	keep_window_open();
 	return 0;
