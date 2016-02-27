@@ -16,6 +16,7 @@ int main()
 {
 	
 	double c=0; // declare input variable
+	cout << "Please enter a temperature in Celsius (as floating-point number): ";
 	cin >> c; // retrieve temperature to input variable
 	double k = ctok(c); // convert temperature
 	cout << k << "\n";
