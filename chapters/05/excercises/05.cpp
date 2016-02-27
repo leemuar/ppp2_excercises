@@ -21,6 +21,17 @@ double ctok(double c)
 	return k;
 }
 
+// converts temperature in Kelvin to Celsius
+double ktoc(double k)
+{
+	// lowest possible for Kelvin temperature
+	constexpr double lowest_possible = 0.0;
+	constexpr double kelvin_celsius_diff = 273.15;
+	// check for lower boundary
+	if (k < lowest_possible) { throw Input_Too_Low{}; }
+	return k + kelvin_celsius_diff;
+}
+
 int main()
 {
 
