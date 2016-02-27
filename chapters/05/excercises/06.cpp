@@ -35,7 +35,9 @@ double read_temperature()
 	double t;
 	cout << "Please enter a temperature number:\n";
 	cin >> t;
-	if(!cin) { throw runtime_error("Temperature entered is not valid"); }
+	if(!cin) {
+		throw runtime_error("Temperature entered is not valid");
+	}
 	
 	return t;
 }
@@ -47,8 +49,12 @@ char read_unit()
 	// read unit from input
 	cin >> unit;
 	// check the input
-	if (!cin) { throw runtime_error("Valid unit to convert from was not provided"); }
-	if (!is_valid_unit(unit)) { throw runtime_error("Invalid unit to convert from"); }
+	if (!cin) {
+		throw runtime_error("Valid unit to convert from was not provided");
+	}
+	if (!is_valid_unit(unit)) {
+		throw runtime_error("Invalid unit to convert from");
+	}
 
 	return unit;
 }
@@ -64,8 +70,12 @@ char read_unit_from()
 	cin >> unit;
 	
 	// check the input and throw error if required
-	if (!cin) { throw runtime_error("Valid unit to convert from was not provided"); }
-	if (!is_valid_unit(unit)) { throw runtime_error("Invalid unit to convert from"); }
+	if (!cin) {
+		throw runtime_error("Valid unit to convert from was not provided");
+	}
+	if (!is_valid_unit(unit)) {
+		throw runtime_error("Invalid unit to convert from");
+	}
 	
 	return unit;
 }
@@ -81,8 +91,12 @@ char read_unit_to()
 	cin >> unit;
 	
 	// check the input
-	if (!cin) { throw runtime_error("Valid unit to convert from was not provided"); }
-	if (!is_valid_unit(unit)) { throw runtime_error("Invalid unit to convert from"); }
+	if (!cin) {
+		throw runtime_error("Valid unit to convert from was not provided");
+	}
+	if (!is_valid_unit(unit)) {
+		throw runtime_error("Invalid unit to convert from");
+	}
 	
 	return unit;
 }
@@ -129,26 +143,23 @@ int main()
 	char unit_from{' '}; // temperature unit to convert from
 	char unit_to{' '}; // temperature unit to convert to
 	
-	try 
-	{
-	// read input from user
-	temperature = read_temperature();
-	unit_from = read_unit_from();
-	unit_to = read_unit_to();
-	// calculate temperature
-	result = convert(temperature, unit_from, unit_to);
-	// output result
-	output_result(temperature, unit_from, unit_to, result);
-	
-	return exit_ok;
-	
+	try {
+		// read input from user
+		temperature = read_temperature();
+		unit_from = read_unit_from();
+		unit_to = read_unit_to();
+		// calculate temperature
+		result = convert(temperature, unit_from, unit_to);
+		// output result
+		output_result(temperature, unit_from, unit_to, result);
+		
+		return exit_ok;
+		
 	// handle errors
-	} 
-	catch (exception& e) {
+	} catch (exception& e) {
 		cerr << "Error! " << e.what();
 		return exit_runtime_error;
-	} 
-	catch (...) {
+	} catch (...) {
 		cerr << "Oops! Unknown error happened!";
 		return exit_unknown_error;
 	}
