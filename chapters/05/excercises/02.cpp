@@ -8,7 +8,7 @@ them and correct the code
 #include "std_lib_facilities.h"
 double ctok(double c)
 {
-	int k = c + 273.15;
+	int k = c - 273.15;
 	return k;
 }
 
