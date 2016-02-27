@@ -16,7 +16,7 @@ int main()
 {
 	
 	double c=0; // declare input variable
-	cin >> d; // retrieve temperature to input variable
+	cin >> c; // retrieve temperature to input variable
 	double k = ctok("c"); // convert temperature
 	Cout << k << "\n";
 
