@@ -1,6 +1,6 @@
 /*
 The following program takes in a temperature in Celsius and con-
-verts it to Kelvin. This code has many errors in it. Fin the errors, list
+verts it to Kelvin. This code has many errors in it. Find the errors, list
 them and correct the code
 */
 
@@ -9,7 +9,7 @@ them and correct the code
 double ctok(double c)
 {
 	int k = c + 273.15;
-	return int
+	return k;
 }
 
 int main()
