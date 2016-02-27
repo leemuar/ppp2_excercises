@@ -10,14 +10,17 @@ class Input_Too_Low{};
 #include "std_lib_facilities.h"
 double ctok(double c)
 {
+	// lowest temperature possible in Celsius
+	constexpr double lowest_possible = -273.15;
+	// check for lower boundary of temperature
+	if (c < lowest_possible) { throw Input_Too_Low{}; }
 	double k = c - 273.15;
 	return k;
 }
 
 int main()
 {
-	// lowest temperature possible in Celsius
-	constexpr double lowest_possible = -273.15;
+
 	// exit codes
 	constexpr int ok_exit_code = 0;
 	constexpr int bad_input_exit_code = 1;
@@ -31,8 +34,6 @@ int main()
 	
 	// check for bad input
 	if (!cin){ throw Bad_Input{}; }
-	// check for lower boundary of temperature
-	if (c < lowest_possible) { throw Input_Too_Low{}; }
 	
 	double k = ctok(c); // convert temperature
 	cout << c << " in Celsius is " << k << " in Kelvin\n";
