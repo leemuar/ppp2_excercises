@@ -45,7 +45,7 @@ double read_temperature()
 // reads temperature unit character
 char read_unit()
 {
-	char unit{' '};
+	char unit;
 	// read unit from input
 	cin >> unit;
 	// check the input
@@ -62,7 +62,7 @@ char read_unit()
 // reads temperature unit char to convert from
 char read_unit_from()
 {
-	char unit{' '};
+	char unit;
 	// print promt message
 	cout << "Please enter a temperature unit to convert from\n";
 	cout << "Use " << unit_celsius << " for Celsius, " << unit_fahrenheit << " for Fahrenheit\n";
@@ -83,7 +83,7 @@ char read_unit_from()
 // read temperature unit char to convert from
 char read_unit_to()
 {
-	char unit{' '};
+	char unit;
 	// print promt message
 	cout << "Please enter a temperature unit to convert to\n";
 	cout << "Use " << unit_celsius << " for Celsius, " << unit_fahrenheit << " for Fahrenheit\n";
@@ -140,8 +140,8 @@ int main()
 {
 	double temperature{0};
 	double result{0};
-	char unit_from{' '}; // temperature unit to convert from
-	char unit_to{' '}; // temperature unit to convert to
+	char unit_from; // temperature unit to convert from
+	char unit_to; // temperature unit to convert to
 	
 	try {
 		// read input from user
