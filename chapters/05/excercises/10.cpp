@@ -1,5 +1,5 @@
 /*
-<odify the program from exercise 8 to use double instead of int. Also,
+Modify the program from exercise 8 to use double instead of int. Also,
 make a vector of doubles containing the N-1 difference between adja-
 cent values and write out that vector of difference
 */
@@ -27,11 +27,11 @@ int read_amount()
 }
 
 //reads set of integer numbers
-vector<int> read_numbers()
+vector<double> read_numbers()
 {
-	int n;
-	vector<int> numbers;
-	cout << "Please enter some integers. Enter | to stop\n";
+	double n;
+	vector<double> numbers;
+	cout << "Please enter some floating-point numbers. Enter | to stop\n";
 	while (cin >> n) {
 		numbers.push_back(n);
 	}
@@ -40,13 +40,13 @@ vector<int> read_numbers()
 
 // calculates sum of first N elements in vector of integers
 // throws exceptions on error
-int calc_sum(vector<int> numbers, int amount)
+double calc_sum(vector<double> numbers, int amount)
 {
 	if (numbers.size() < amount) {
 		throw runtime_error("Not enough numbers to calculate requested amount!" );
 	}
 	
-	int sum;
+	double sum;
 	for (int i = 0; i < amount; ++i) {
 		sum += numbers[i];
 	}
@@ -54,9 +54,41 @@ int calc_sum(vector<int> numbers, int amount)
 }
 
 // prints sum
-void output_sum(int sum, int amount)
+void output_sum(double sum, int amount)
 {
-	cout << "The sum of first " << amount << " elements is " << sum; 
+	cout << "The sum of first " << amount << " elements is " << sum << '\n'; 
+}
+
+// prints vector of difference
+void output_diff_vector(vector<double> diffs)
+{
+	if (0 == diffs.size()) {
+		cout << "Vector of difference is empty";
+	} else {
+		cout << "Here is the vector of difference between adjacent values:\n";
+		for (double d : diffs) {
+			cout << ' ' << d;
+		}
+	}
+	cout << '\n';
+}
+
+// returns vector of difference between numbers in provided vector
+// returns empty vector if difference cannot be calculated (i.e. there is only one
+// element in source vector)
+vector<double> calc_diff_vector(vector<double> sourcev)
+{
+	vector<double> diffs;
+
+	if (sourcev.size() > 1) {
+		// fill the diff vector
+		// start from second element
+		for (int i = 1; i < sourcev.size(); ++i) {
+			diffs.push_back(sourcev[i] - sourcev[i - 1]);
+		}
+	}
+	
+	return diffs;
 }
 
 int main()
@@ -65,11 +97,11 @@ int main()
 		// read N - amount of numbers to calculate sum of
 		int amount = read_amount();
 		// read set of numbers
-		vector<int> numbers = read_numbers();
-		// calculate sum
-		int sum = calc_sum(numbers, amount);
+		vector<double> numbers = read_numbers();
 		// output sum
-		output_sum(sum, amount);
+		output_sum(calc_sum(numbers, amount), amount);
+		// output diff numbers
+		output_diff_vector(calc_diff_vector(numbers));
 		
 	} catch (exception& e) {
 		cerr << e.what();
