@@ -28,12 +28,17 @@ void output_fibonacci(int firstn)
 {
 	cout << "Here are the first " << firstn << " Fibonacci numbers:\n";
 	
+	// calc and output fibonacci numbers
 	int prev = 0;
 	int current = 1;
+	int next = 0;
 	for (int i = 1; i <= firstn; ++i) {
-		cout << current;
+		// print current number - it is in second var
+		cout << ' ' << current;
+		// calc next fibonacci number
+		next = prev + current;
 		prev = current;
-		current += prev;
+		current = next;
 	}
 }
 
