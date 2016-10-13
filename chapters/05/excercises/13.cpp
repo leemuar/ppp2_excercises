@@ -21,6 +21,14 @@ vector<int> generate_numbers_to_guess()
 	return numbers;
 }
 
+// prints vector of numbers
+void print_numbers(vector<int> numbers)
+{
+	for (int num : numbers) {
+		cout << num;
+	}
+	cout << '\n';
+}
 
 // checks if a number is valid for bulls and cows game
 bool is_valid_number(int number)
