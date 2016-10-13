@@ -17,7 +17,7 @@ different seeds give different sequences of random numbers
 // the user should find
 vector<int> generate_numbers_to_guess()
 {
-	vector<int> numbers{1, 2, 3, 4}; // hardcoded for now
+	vector<int> numbers{randint(10), randint(10), randint(10), randint(10)};
 	return numbers;
 }
 
