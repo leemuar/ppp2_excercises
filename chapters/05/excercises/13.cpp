@@ -13,11 +13,46 @@ different seeds give different sequences of random numbers
 
 #include "std_lib_facilities.h"
 
+// check if vector has number
+bool has_number(vector<int> numbers, int number)
+{
+	for(int current : numbers) {
+		if (current == number){ return true; }
+	}
+	
+	return false;
+}
+
+// checks if vector does NOT have number
+bool is_unique(vector<int> numbers, int number)
+{
+	return !has_number(numbers, number);
+}
+
 // creates a vector of 4 int numbers from 0 to 9
 // the user should find
 vector<int> generate_numbers_to_guess()
 {
-	vector<int> numbers{randint(10), randint(10), randint(10), randint(10)};
+	constexpr int ncount{4}; // count of numbers in vector
+	constexpr int rand_range{10}; // for random number generator 
+	vector<int> numbers;
+	
+	// fill the vector with `ncount` random unique numbers
+	// repeat the number generation until all positions are filled
+	// vector should contain unique number (there should be no two equal numbers)
+	int position{1};
+	while (position <= ncount) {
+		// generate a number
+		int new_number = randint(rand_range);
+		// if number is unique (not equal to previously generated)
+		if (is_unique(numbers, new_number)) {
+			// add newly generated number to vector
+			numbers.push_back(new_number);
+			// proceed to next number in vector
+			++position;
+		}
+	}
+	
 	return numbers;
 }
 
@@ -35,18 +70,6 @@ bool is_valid_number(int number)
 {
 	return (0 <= number) and (number <= 9);
 }
-
-
-// check if vector has number
-bool has_number(vector<int> numbers, int number)
-{
-	for(int current : numbers) {
-		if (current == number){ return true; }
-	}
-	
-	return false;
-}
-
 
 bool has_number_in_different_position(vector<int> numbers, int number, int position)
 {
