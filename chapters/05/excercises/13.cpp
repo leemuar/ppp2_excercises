@@ -23,11 +23,13 @@ bool has_number(vector<int> numbers, int number)
 	return false;
 }
 
+
 // checks if vector does NOT have number
 bool is_unique(vector<int> numbers, int number)
 {
 	return !has_number(numbers, number);
 }
+
 
 // creates a vector of 4 int numbers from 0 to 9
 // the user should find
@@ -142,28 +144,32 @@ int calculate_cows(vector<int> base, vector<int> input)
 	return cows;
 }
 
-
 int main()
 {
 	try
 	{
-		
 		// create the number user should guess
-		vector<int> answer = generate_numbers_to_guess();
+		bool start_new_game = true;
 		bool game_over = false;
-		while(!game_over) {
-			// read user's guess
-			vector<int> guess = read_guess_from_user(answer.size());
-			// check 
-			int bulls = calculate_bulls(answer, guess);
-			
-			if (bulls == answer.size()) {
-				game_over = true;
-				cout << "You won!";
-			} else {
-				int cows = calculate_cows(answer, guess);
-				cout << "bulls: " << bulls << '\n';
-				cout << "cows: " << cows << '\n';
+		// game loop
+		while (start_new_game) {
+			vector<int> answer = generate_numbers_to_guess();
+			game_over = false;
+			// asking user's guess loop
+			while(!game_over) {
+				// read user's guess
+				vector<int> guess = read_guess_from_user(answer.size());
+				// check 
+				int bulls = calculate_bulls(answer, guess);
+				
+				if (bulls == answer.size()) {
+					game_over = true;
+					cout << "You won!" << '\n';
+				} else {
+					int cows = calculate_cows(answer, guess);
+					cout << "bulls: " << bulls << '\n';
+					cout << "cows: " << cows << '\n';
+				}
 			}
 		}
 		
