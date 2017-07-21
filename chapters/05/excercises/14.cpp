@@ -72,6 +72,17 @@ int main()
 			}
 		}
 		
+		// print out the sum of the values in each day vector
+		for (int i = 0; i < week_data.size(); ++i){
+			// calculate sum
+			int sum = 0;
+			for(int val : week_data[i]){
+				sum += val;
+			}
+			// print the sum
+			cout << "The sum for day " << i << " is " << sum << '\n';
+		}
+		
 		return 0;
 	// handle errors	
 	} catch (exception& e) {
