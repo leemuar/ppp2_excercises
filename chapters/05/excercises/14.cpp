@@ -60,6 +60,7 @@ int main()
 			week_data.push_back(day_data);
 		}
 		
+		int rejected = 0;
 		string day_name;
 		int day_value = 0;
 		while (cin >> day_name >> day_value) {
@@ -69,6 +70,8 @@ int main()
 			if (day_index != index_not_found) {
 				// ... add value to the day vector
 				week_data[day_index].push_back(day_value);
+			} else {
+				++rejected;
 			}
 		}
 		
@@ -82,6 +85,9 @@ int main()
 			// print the sum
 			cout << "The sum for day " << i << " is " << sum << '\n';
 		}
+		
+		// print out number of rejected values
+		cout << "Number of rejected values: " << rejected << '\n';
 		
 		return 0;
 	// handle errors	
